@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environment variables
+.env
+
+# Streamlit
+.streamlit/secrets.toml
+
+# ChromaDB
+data/chroma_db/
+
+# Virtual Environment
+.venv/
+venv/
