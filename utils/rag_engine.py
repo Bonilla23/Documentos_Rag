@@ -53,7 +53,7 @@ class RAGEngine:
         else:
             raise ValueError("Invalid model provider")
 
-    def get_chain(self, model_provider="Gemini", model_name="gemini-pro", temperature=0.7):
+    def get_chain(self, model_provider="Gemini", model_name="gemini-2.5-flash", temperature=0.7):
         llm = self.get_llm(model_provider, model_name, temperature)
         retriever = self.vector_store.as_retriever(search_kwargs={"k": 5})
         

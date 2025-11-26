@@ -11,12 +11,15 @@ class DBManager:
         self.client = chromadb.PersistentClient(path=persist_directory)
 
     def get_embedding_function(self):
-        # Prefer Gemini if available, else use local Sentence Transformers
+        # Use local Sentence Transformers by default (no API limits)
+        # Only use Gemini if explicitly configured
+        use_gemini = os.getenv("USE_GEMINI_EMBEDDINGS", "false").lower() == "true"
         api_key = os.getenv("GOOGLE_API_KEY")
-        if api_key:
+        
+        if use_gemini and api_key:
             return GoogleGenerativeAIEmbeddings(model="models/embedding-001", google_api_key=api_key)
         else:
-            # Use a lightweight, high-quality default model
+            # Use a lightweight, high-quality default model (no quota limits)
             model_name = os.getenv("EMBEDDING_MODEL", "all-MiniLM-L6-v2")
             return HuggingFaceEmbeddings(model_name=model_name, model_kwargs={'device': 'cpu'})
 
