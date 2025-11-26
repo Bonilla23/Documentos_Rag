@@ -1,6 +1,11 @@
 import os
 import tempfile
 from typing import List
+import warnings
+
+# Suppress LangChain deprecation warnings
+warnings.filterwarnings('ignore', category=DeprecationWarning, module='langchain')
+
 from langchain_community.document_loaders import PyPDFLoader, TextLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_google_genai import ChatGoogleGenerativeAI

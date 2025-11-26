@@ -1,5 +1,10 @@
 import chromadb
 import os
+import warnings
+
+# Suppress PyTorch warnings
+warnings.filterwarnings('ignore', message='.*torch.classes.*')
+
 from langchain_chroma import Chroma
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from langchain_huggingface import HuggingFaceEmbeddings

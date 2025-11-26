@@ -2,6 +2,12 @@ import streamlit as st
 from utils.styles import load_css, card
 from dotenv import load_dotenv
 import os
+import warnings
+
+# Suppress warnings for cleaner console
+warnings.filterwarnings('ignore', category=DeprecationWarning)
+warnings.filterwarnings('ignore', message='.*torch.classes.*')
+warnings.filterwarnings('ignore', module='langchain')
 
 load_dotenv()
 
